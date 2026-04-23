@@ -1,0 +1,26 @@
+# Core framework
+streamlit>=1.35.0
+
+# LangChain ecosystem
+langchain>=0.2.0
+langchain-core>=0.2.0
+langchain-openai>=0.1.8
+langchain-community>=0.2.0
+
+# Vector store
+faiss-cpu>=1.8.0
+
+# OpenAI SDK (used under the hood by langchain-openai)
+openai>=1.30.0
+
+# YouTube Data API client
+google-api-python-client>=2.130.0
+
+# Environment variable management
+python-dotenv>=1.0.1
+
+# Pydantic (structured output schemas)
+pydantic>=2.7.0
+
+# Standard library extras (already included in Python 3.10+, listed for clarity)
+# re, collections, typing — no install needed
