@@ -189,6 +189,4 @@ extract_video_id()  ──►  get_comments()  [YouTube Data API v3]
 
 ---
 
-## 📄 License
 
-MIT — free to use and modify.
