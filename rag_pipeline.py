@@ -25,9 +25,8 @@ load_dotenv()
 
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
-# ---------------------------------------------------------------------------
+
 # 1. Document Preparation
-# ---------------------------------------------------------------------------
 
 def build_documents(comments: list[str]) -> list[Document]:
     """
@@ -69,10 +68,7 @@ def chunk_documents(documents: list[Document]) -> list[Document]:
     )
     return splitter.split_documents(documents)
 
-
-# ---------------------------------------------------------------------------
 # 2. Vector Store + Retriever
-# ---------------------------------------------------------------------------
 
 def build_vectorstore(chunks: list[Document]) -> FAISS:
     """
@@ -103,9 +99,7 @@ def build_retriever(vectorstore: FAISS, k: int = 5):
     return vectorstore.as_retriever(search_kwargs={"k": k})
 
 
-# ---------------------------------------------------------------------------
 # 3. Prompt Engineering
-# ---------------------------------------------------------------------------
 
 RAG_PROMPT = ChatPromptTemplate.from_messages(
     [
@@ -136,9 +130,7 @@ RAG_PROMPT = ChatPromptTemplate.from_messages(
 )
 
 
-# ---------------------------------------------------------------------------
 # 4. RAG Chain
-# ---------------------------------------------------------------------------
 
 def build_llm() -> ChatOpenAI:
     """
@@ -188,9 +180,8 @@ def answer_query(query: str, retriever, llm: ChatOpenAI) -> str:
     return answer
 
 
-# ---------------------------------------------------------------------------
-# 5. One-shot pipeline builder (convenience)
-# ---------------------------------------------------------------------------
+
+# 5. One-shot pipeline builder 
 
 def build_rag_pipeline(comments: list[str]):
     """
