@@ -31,18 +31,17 @@ from utils import analyze_sentiment, get_common_words, summarize_comments
 
 load_dotenv()
 
-# ---------------------------------------------------------------------------
+
 # Page config
-# ---------------------------------------------------------------------------
 st.set_page_config(
     page_title="YouTube Comment RAG Analyzer",
     page_icon="🎬",
     layout="centered",
 )
 
-# ---------------------------------------------------------------------------
+
 # Initialize session state
-# ---------------------------------------------------------------------------
+
 if "comments" not in st.session_state:
     st.session_state.comments = []
 if "retriever" not in st.session_state:
@@ -54,9 +53,9 @@ if "messages" not in st.session_state:
 if "video_loaded" not in st.session_state:
     st.session_state.video_loaded = False
 
-# ---------------------------------------------------------------------------
+
 # Header
-# ---------------------------------------------------------------------------
+
 st.title("🎬 YouTube Comment RAG Analyzer")
 st.caption(
     "Paste a YouTube video link, load the comments, then chat with them "
@@ -64,9 +63,9 @@ st.caption(
 )
 st.divider()
 
-# ---------------------------------------------------------------------------
+
 # Section 1 — URL Input + Load Comments
-# ---------------------------------------------------------------------------
+
 st.subheader("📥 Load Comments")
 
 url_col, btn_col = st.columns([4, 1], vertical_alignment="bottom")
@@ -111,9 +110,8 @@ if load_btn:
                 except Exception as e:
                     st.error(f"Failed to fetch comments: {e}")
 
-# ---------------------------------------------------------------------------
+
 # Section 2 — Feature Buttons (only shown after comments are loaded)
-# ---------------------------------------------------------------------------
 if st.session_state.video_loaded:
     st.divider()
     st.subheader("🔍 Quick Analyses")
@@ -155,9 +153,8 @@ if st.session_state.video_loaded:
                 summary = summarize_comments(st.session_state.comments)
             st.info(summary)
 
-    # ---------------------------------------------------------------------------
     # Section 3 — Chat Interface
-    # ---------------------------------------------------------------------------
+    
     st.divider()
     st.subheader("💬 Chat with Comments")
     st.caption(
@@ -206,9 +203,9 @@ if st.session_state.video_loaded:
                         {"role": "assistant", "content": error_msg}
                     )
 
-# ---------------------------------------------------------------------------
+
 # Footer hint when no video is loaded
-# ---------------------------------------------------------------------------
+
 if not st.session_state.video_loaded:
     st.info(
         "👆 Paste a YouTube URL above and click **Load Comments** to get started."
